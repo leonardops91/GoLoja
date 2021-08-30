@@ -1,0 +1,65 @@
+{{define "Index"}}
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Página principal</title>
+</head>
+
+<body>
+    <div style="margin: 50px;">
+        <h1>Lista de produtos</h1>
+        <a class="btn btn-dark" href="/new" style="margin: 10px 0;">Cadastrar produto</a>
+
+        <table class="table">
+            <thead style="text-align: center;">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col" colspan="2">Ações</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                {{range .}}
+                <tr>
+                    <td scope="row">{{.Id}}</td>
+                    <td scope="row">{{.Name}}</td>
+                    <td scope="row">R$ {{.Price}}</td>
+                    <td scope="row">{{.Quantity}}</td>
+                    <td scope="row"><a href="/edit?id={{.Id}}" class="btn btn-dark">Editar</a></td>
+                    <td scope="row"><button onclick="onDelete('{{.Id}}')" class="btn btn-dark">Excluir</button></td>
+                </tr>
+                {{end}}
+                <thead>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function onDelete(id) {
+            let answer = confirm("Tem certeza que deseja excluir o item?")
+            if (answer === true) {
+                window.location = "/delete?id=" + id
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+{{end}}
