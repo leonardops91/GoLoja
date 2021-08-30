@@ -22,6 +22,5 @@ func DbConnect() *sql.DB {
 		panic(err.Error())
 	}
 
-	err = db.Ping()
 	return db
 }
